@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Literacy Rate</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/literacy.css">
+</head>
+<body>
+  <h1>Literacy Rate</h1>
+  <div>
+    <label for="filterInput">Filter by country name:</label>
+    <input type="text" id="filterInput" placeholder="Search...">
+    <br>
+    <label for="rangeMin">Min Literacy Rate (%):</label>
+    <input type="number" id="rangeMin" min="0" step="0.01">
+    <label for="rangeMax">Max Literacy Rate (%):</label>
+    <input type="number" id="rangeMax" min="0" step="0.01">
+    <button id="filterButton">Filter</button>
+    <button id="clearFilter">Clear Filter</button>
+  </div>
+  <table id="literacyTable">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Literacy Rate (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(function(country) { %>
+        <tr>
+          <td><%= country.Country %></td>
+          <td><%= country['Literacy Rate (September 2021)'] %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/literacy.js"></script>
+</body>
+</html>

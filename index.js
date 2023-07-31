@@ -52,6 +52,28 @@ app.get('/test', (req, res) => {
   res.send('Hello World!');
 });
 
+
+// Function to convert literacy rate to percentage format
+function formatLiteracy(literacyRate) {
+  return parseFloat(literacyRate).toFixed(2) + '%';
+}
+
+// Route to render the /country/literacy page
+app.get('/country/literacy', (req, res) => {
+  const data = [];
+
+  fs.createReadStream(path.join(__dirname, 'data', 'country_literacy_2021sep.csv'))
+    .pipe(csvParser())
+    .on('data', (row) => {
+      // Convert literacy rate to percentage format
+      row['Literacy Rate'] = formatLiteracy(row['Literacy Rate']);
+      data.push(row);
+    })
+    .on('end', () => {
+      res.render('literacy', { data });
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
