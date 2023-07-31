@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Country Population</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Country Population</h1>
+  <input type="text" id="filterInput" placeholder="Filter by country name">
+  <table id="populationTable">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Population (September 2021)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(function(country) { %>
+        <tr>
+          <td><%= country.Country %></td>
+          <td><%= country['Population (September 2021)'] %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>
